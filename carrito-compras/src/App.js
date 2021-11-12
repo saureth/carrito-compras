@@ -1,6 +1,5 @@
-import logo from './logo.svg';
-import './App.css';
 import {Component} from 'react';
+import Productos from './components/Productos'
 
 class App extends Component {
   state={
@@ -18,7 +17,12 @@ class App extends Component {
   }
   render(){
     return(
-      <div><p>Hola mundo</p></div>
+      <div>
+        <Productos
+          agregarAlCarro={()=>console.log("Agregando al carrito")}
+          productos = {this.state.productos}
+        />
+      </div>
     );
   }
 }
