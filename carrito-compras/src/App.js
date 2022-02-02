@@ -17,9 +17,7 @@ class App extends Component {
         name:'Lechuga', price: 500, img: '/productos/lechuga.jpg'
       }
     ],
-    carro: [
-      
-    ],
+    carro: [],
   }
 
   agregarAlCarro = (producto) => {
@@ -32,6 +30,7 @@ class App extends Component {
         })
         :x
       )
+      console.log(newCarro);
       return this.setState({carro: newCarro})
     }
     return this.setState({
@@ -43,10 +42,9 @@ class App extends Component {
   }
 
   render(){
-    console.log(this.state.carro);
     return(
       <div>
-        <Navbar />
+        <Navbar carro={this.state.carro} />
         <Layout>
           <Title/>
           <Productos
