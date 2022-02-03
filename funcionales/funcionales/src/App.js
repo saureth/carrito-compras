@@ -1,10 +1,10 @@
-import {useState, Component} from 'react';
+import {useState} from 'react';
 
 // reglas: 
 // hooks no se llaman en loops, siempre al inicio del componente y al nivel más alto de la función
 // solo se llaman en componentes de react o custom hooks
 
-class App extends Component {
+/*class App extends Component {
     state = { contador: 0}
 
     incrementar = () => {
@@ -18,16 +18,24 @@ class App extends Component {
             </div>
         );
     }
+}*/
+
+const useContador = (inicial) => {
+    const [contador, setContador] = useState(inicial);
+    const incrementar = () => {
+        setContador(contador + 1);
+    }
+    return [contador, incrementar];
 }
-/*
+
 const App = () => {
-    const [contador, setContador] = useState(0);
+    const [contador, incrementar] = useContador(0);
     return (
         <div>
             Contador: {contador}
-            <button onClick={()=>setContador(contador + 1)}> Incrementar </button>
+            <button onClick={incrementar}> Incrementar </button>
         </div>
     );
-}*/
+}
 
 export default App;
