@@ -1,19 +1,16 @@
-const impura = () => {
-    
-}
+import {useState} from 'react';
 
-const MiComponente = ({props}) => {
-    const {miProp} = props;
-    return (
-        <div>
-            Nombre: {miProp}
-        </div>
-    );
-}
+// reglas: 
+// hooks no se llaman en loops, siempre al inicio del componente y al nivel más alto de la función
+// solo se llaman en componentes de react o custom hooks
 
 const App = () => {
+    const [contador, setContador] = useState(0);
     return (
-        <MiComponente miProp="Chanchito Feliz"/>
+        <div>
+            Contador: {contador}
+            <button onClick={()=>setContador(contador + 1)}> Incrementar </button>
+        </div>
     );
 }
 
