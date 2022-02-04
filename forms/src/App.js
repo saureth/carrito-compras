@@ -1,22 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import {useRef} from 'react';
 
-function App() {
+const App = () => {
 
-  const submit = (e) => {
-    e.preventDefault();
-    const data = Array.from(new FormData(e.target));
-    
+  const input = useRef();
+  const file = useRef();
+
+  const submit = () => {
+    const form = new FormData();
+    form.append('texto', input.current.value);
+    form.append('archivo', file.current.files[0]);
+    fetch('/lala', {method: 'POST', body: form} )
   }
+
   return (
-    <form onSubmit={submit}>
+    <div>
       <div>
-        <span>lala</span>
-        <input name='campo'/>
+        <span> lala </span>
+        <input type='text' name='campo' ref={input} />
+        <input type='file' ref={file} />
       </div>
-      <input name='campo-2'/>
-      <input type='submit' value ='Enviar'/> 
-    </form>
+      <input type='submit' value='Enviar' onClick={submit} /> 
+    </div>
   );
 }
 
