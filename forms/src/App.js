@@ -21,7 +21,7 @@ const App = () => {
       </div>
       <input name='campo-2'/>
       <input type='file' name='archivo' />
-      <input type='submit' value='Enviar' onClick={submit} /> 
+      <input type='submit' value='Enviar'/> 
     </div>
   );
 }
