@@ -17,10 +17,9 @@ const App = () => {
     <div>
       <div>
         <span> lala </span>
-        <input name='campo'/>
+        <input type='text' name='campo' ref={input} />
+        <input type='file' ref={file} />
       </div>
-      <input name='campo-2'/>
-      <input type='file' name='archivo' />
       <input type='submit' value='Enviar' onClick={submit} /> 
     </div>
   );
