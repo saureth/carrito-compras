@@ -1,8 +1,9 @@
-import { Formik } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 const validate = (values) => {
     const errors = {}
     if (!values.name) {
+        console.log(values);
         errors.name = 'Requerido'
     } else if (values.name.length < 5) {
         errors.name = 'Nombre muy corto';
@@ -13,9 +14,9 @@ const validate = (values) => {
         errors.lastName = 'Apellido muy corto';
     }
     if (!values.email) {
-        errors.name = 'Requerido'
+        errors.email = 'Requerido'
     } else if (values.email.length < 5) {
-        errors.email = 'Nombre muy corto';
+        errors.email = 'Correo muy corto';
     }
     return errors;
 }
@@ -27,31 +28,20 @@ function App() {
             validate={validate}
             onSubmit={values => console.log(values)}
         >
-            {formik =>
-                <form onSubmit={formik.handleSubmit}>
-                    <label>Nombre</label>
-                    <input
-                        type='text'
-                        {...formik.getFieldProps('name')}
-                    />
-                    {formik.touched.name && formik.errors.name ? <div>{formik.errors.name}</div> : null}
-                    <br />
-                    <label>Apellido</label>
-                    <input
-                        type='text'
-                        {...formik.getFieldProps('lastName')}
-                    />
-                    {formik.touched.lastName && formik.errors.lastName ? <div>{formik.errors.lastName}</div> : null}
-                    <br />
-                    <label>Correo</label>
-                    <input
-                        type='email'
-                        {...formik.getFieldProps('email')}
-                    />
-                    {formik.touched.email && formik.errors.email ? <div>{formik.errors.email}</div> : null}
-                    <button type='submit' > Enviar </button>
-                </form>
-            }
+            <Form>
+                <label>Nombre</label>
+                <Field name='name' type='text' />
+                <ErrorMessage name='name' />
+                <br />
+                <label>Apellido</label>
+                <Field name='lastName' type='text' />
+                <ErrorMessage name='lastName' />
+                <br />
+                <label>Correo</label>
+                <Field name='email' type='email' />
+                <ErrorMessage name='email' />
+                <button type='submit' > Enviar </button>
+            </Form>
         </Formik>
     );
 }
