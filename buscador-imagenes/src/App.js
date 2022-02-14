@@ -1,22 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import {Formik, Form, Field} from 'formik';
+import './css/header.css'
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+        <Formik 
+          initialValues={{search:''}}
+          onSubmit={async values => {
+            //llamado api
+            console.log(values)
+          }
+        }>
+          <Form>
+            <Field name='search'/>
+          </Form>
+        </Formik>
       </header>
     </div>
   );
