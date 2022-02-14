@@ -26,7 +26,7 @@ function App() {
       <P>Soy un párrafo</P>
       <Button> Enviar </Button>
       <Button primary> Enviar </Button>
-      <BlockButton primary> Enviar </BlockButton>
+      <BlockButton primary as='a' href='#'> Enviar </BlockButton>
     </Content>
   );
 }
