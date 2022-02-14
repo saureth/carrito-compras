@@ -15,6 +15,10 @@ const Button = styled.button`
   border: solid 2px red;
   border-radius: 4px;
 `
+const BlockButton = styled(Button)`
+  width: 100%;
+  font-size: 24px;
+`
 
 function App() {
   return (
@@ -22,6 +26,7 @@ function App() {
       <P>Soy un párrafo</P>
       <Button> Enviar </Button>
       <Button primary> Enviar </Button>
+      <BlockButton primary> Enviar </BlockButton>
     </Content>
   );
 }
