@@ -2,13 +2,13 @@ import styled from "styled-components";
 import { useField } from "formik";
 
 const Control = styled.div`
-    margin-botton: 20px;
+    margin-bottom: 20px;
 `
 
 const Label= styled.label`
     color: black;
     display: block;
-    margin-botton: 5px;
+    margin-bottom: 5px;
 `
 
 const MyInput = styled.input`
@@ -17,7 +17,7 @@ const MyInput = styled.input`
     border: solid 1px #b1b3b5;
     border-radius: 4px;
     width: 100%;
-    margin-botton: 5px;
+    margin-bottom: 5px;
 `
 const ErrorMessage = styled.div`
     color: #f00;
