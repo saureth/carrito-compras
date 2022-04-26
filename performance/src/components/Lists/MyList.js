@@ -1,12 +1,17 @@
-const Li = ({ fullname }) => {
-  console.log(`renderizando ${fullname}`)
-  return (
-    <li>
-      {fullname}
-    </li>
-  )
-}
+import { memo } from 'react';
 
+const Li = memo(
+  ({ fullname }) => {
+    console.log(`renderizando ${fullname}`)
+    return (
+      <li>
+        {fullname}
+      </li>
+    )
+  }
+);
+
+// const MLi = memo(Li);
 const MyList = ({ data }) => {
   console.log('renderizando lista')
   return (
