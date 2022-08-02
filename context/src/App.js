@@ -1,38 +1,47 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, memo } from "react";
 
-const Context = createContext({
-    valor: false,
-    toggle: () => {}
-});
+const Context = createContext({});
 
-const Provider = ({children}) => {
-    const [valor, setValor] = useState(false);
-    const value = {
-        valor,
-        toggle: () => setValor(!valor)
-    }
-    return (
-        <Context.Provider value={value}>
+const ContadorProvider = ({children}) => {
+    const [contador, setContador] = useState(0);
+    const incrementar = () => setContador(contador + 1);
+    const decrementar = () => setContador(contador - 1);
+    return(
+        <Context.Provider value={{
+            contador, incrementar, decrementar
+        }}>
             {children}
         </Context.Provider>
     );
-}
-
-const Componente = () => {
-    const { valor, toggle } = useContext(Context);
+};
+const Incrementar = memo(() => {
+    console.log('incrementando');
+    const {incrementar} = useContext(Context);
     return (
-        <div>
-            <label>{valor.toString()}</label>
-            <button onClick={toggle}>Toggle</button>
-        </div>
+        <button onClick={incrementar}>Incrementar</button>
+    );
+});
+const Decrementar = memo(() => {
+    console.log('decrementando');
+    const {decrementar} = useContext(Context);
+    return (
+        <button onClick={decrementar}>Decrementar</button>
+    );
+});
+const Label = () => {
+    console.log('Label');
+    const { contador } = useContext(Context);
+    return (
+        <h1>{contador}</h1>
     );
 }
-
 const App = () => {
     return (
-        <Provider>
-            <Componente />
-        </Provider>
+        <ContadorProvider>
+            <Label />
+            <Incrementar />
+            <Decrementar />
+        </ContadorProvider>
     );
 }
 export default App;
