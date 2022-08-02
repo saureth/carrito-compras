@@ -1,36 +1,38 @@
-import './App.css';
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState } from "react";
 
-const ContextDefault = createContext('valor por defecto');
-const Context2 = createContext('valor por defecto 2');
-const DefaultProvider = ({ children }) => {
-  return (
-    <ContextDefault.Provider value={'mi valor'}>
-      { children }
-    </ContextDefault.Provider>
-  );
-};
+const Context = createContext({
+    valor: false,
+    toggle: () => {}
+});
 
-const Contenido = () => {
-  const ctx = useContext(ContextDefault);
-  return (
-    <div>{ ctx }</div>
-  );
+const Provider = ({children}) => {
+    const [valor, setValor] = useState(false);
+    const value = {
+        valor,
+        toggle: () => setValor(!valor)
+    }
+    return (
+        <Context.Provider value={value}>
+            {children}
+        </Context.Provider>
+    );
 }
 
-const Contenido2 = () => {
-  const ctx = useContext(Context2);
-  return (
-    <div>{ctx}</div>
-  );
-}
-function App() {
-  return (
-    <DefaultProvider>
-      <Contenido />
-      <Contenido2 />
-    </DefaultProvider>
-  );
+const Componente = () => {
+    const { valor, toggle } = useContext(Context);
+    return (
+        <div>
+            <label>{valor.toString()}</label>
+            <button onClick={toggle}>Toggle</button>
+        </div>
+    );
 }
 
+const App = () => {
+    return (
+        <Provider>
+            <Componente />
+        </Provider>
+    );
+}
 export default App;
